@@ -54,7 +54,9 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_GAMETYPE=0 \
 	SRCDS_GAMEMODE=1 \
 	SRCDS_TV_PASSWORD=tv \
-	SRCDS_TV_RELAY=
+	SRCDS_TV_RELAY=  \
+	SRCDS_HOSTNAME=GOTV  \
+	SRCDS_TV_NAME=GOTV
 
 USER steam
 
@@ -70,7 +72,7 @@ ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
 		&& ${STEAMAPPDIR}/srcds_run \
 			-game csgo -console -autoupdate -steam_dir ${STEAMCMDDIR} -steamcmd_script ${STEAMAPPDIR}/csgo_update.txt -usercon +fps_max $SRCDS_FPSMAX \
 			-tickrate $SRCDS_TICKRATE -port $SRCDS_PORT +tv_port $SRCDS_TV_PORT +clientport $SRCDS_CLIENTPORT_PORT -maxplayers_override $SRCDS_MAXPLAYERS +game_type $SRCDS_GAMETYPE +game_mode $SRCDS_GAMEMODE \
-			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION +password $SRCDS_TV_PASSWORD +tv_relay $SRCDS_TV_RELAY
+			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION +password $SRCDS_TV_PASSWORD +tv_relay $SRCDS_TV_RELAY +tv_name $SRCDS_TV_NAME +hostame $SRCDS_HOSTNAME +tv_advertise_watchable 1 +tv_enable 1
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp
