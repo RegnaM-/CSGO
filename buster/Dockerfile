@@ -51,7 +51,9 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_REGION=3 \
 	SRCDS_MAPGROUP="mg_active" \
 	SRCDS_GAMETYPE=0 \
-	SRCDS_GAMEMODE=1
+	SRCDS_GAMEMODE=1 \
+	SRCDS_TV_PASSWORD=tv \
+	SRCDS_TV_RELAY=
 
 USER steam
 
@@ -67,7 +69,7 @@ ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
 		&& ${STEAMAPPDIR}/srcds_run \
 			-game csgo -console -autoupdate -steam_dir ${STEAMCMDDIR} -steamcmd_script ${STEAMAPPDIR}/csgo_update.txt -usercon +fps_max $SRCDS_FPSMAX \
 			-tickrate $SRCDS_TICKRATE -port $SRCDS_PORT -tv_port $SRCDS_TV_PORT -maxplayers_override $SRCDS_MAXPLAYERS +game_type $SRCDS_GAMETYPE +game_mode $SRCDS_GAMEMODE \
-			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION
+			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION +password $SRCDS_TV_PASSWORD +tv_relay $SRCDS_TV_RELAY
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp
